@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: todo
-          image: ghcr.io/tluhk/todo:latest
+        - name: ghcr-secret
           env:
             - name: COMPANY_NAME
               valueFrom:
@@ -29,3 +29,5 @@ spec:
                   key: PORT
           ports:
             - containerPort: 8081
+      imagePullSecrets:
+        - name: ghcr-secret
