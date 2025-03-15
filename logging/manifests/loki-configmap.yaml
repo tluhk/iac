@@ -25,7 +25,7 @@ data:
     schema_config:
       configs:
         - from: 2020-05-15
-          store: boltdb-shipper
+          store: boltdb
           object_store: filesystem
           schema: v11
           index:
@@ -33,11 +33,8 @@ data:
             period: 24h
 
     storage_config:
-      boltdb_shipper:
-        active_index_directory: /loki/index
-        cache_location: /loki/cache
-        cache_ttl: 24h
-        shared_store: filesystem
+      boltdb:
+        directory: /loki/index
       filesystem:
         directory: /loki/chunks
 
@@ -45,16 +42,6 @@ data:
       reject_old_samples: true
       reject_old_samples_max_age: 168h
 
-    chunk_store_config:
-      chunk_cache_config:
-        enable_fifocache: true
-        validity: 24h
-
     table_manager:
       retention_deletes_enabled: false
       retention_period: 0s
-
-    compactor:
-      working_directory: /loki/compactor
-      shared_store: filesystem
-      compaction_interval: 10m
