@@ -15,7 +15,6 @@ spec:
     spec:
       containers:
         - name: todo
-        - name: ghcr-secret
           env:
             - name: COMPANY_NAME
               valueFrom:
