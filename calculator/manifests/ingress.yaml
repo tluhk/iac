@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: calculator-ingress
+  annotations:
+    kubernetes.io/ingress.class: "traefik" # Või "nginx"
+spec:
+  tls:
+    - hosts:
+        - calculator.local
+      secretName: calculator-tls # Kasutab meie käsitsi loodud TLS-i
+  rules:
+    - host: calculator.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: calculator-service
+                port:
+                  number: 80
