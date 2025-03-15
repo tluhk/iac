@@ -28,5 +28,13 @@ spec:
               value: "redis-service" # Kasutab Redis Service DNS-i
             - name: REDIS_PORT
               value: "6379"
+            - name: LOG_LEVEL
+              value: "info"
+          volumeMounts:
+            - name: logs
+              mountPath: /var/log/todo
           ports:
             - containerPort: 3000
+      volumes:
+        - name: logs
+          emptyDir: {}
