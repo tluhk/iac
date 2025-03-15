@@ -22,12 +22,7 @@ spec:
                 configMapKeyRef:
                   name: todo-config
                   key: COMPANY_NAME
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: todo-config
-                  key: PORT
           ports:
-            - containerPort: 8082
+            - containerPort: 3000
       imagePullSecrets:
         - name: ghcr-secret
