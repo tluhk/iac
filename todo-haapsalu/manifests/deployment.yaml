@@ -24,10 +24,9 @@ spec:
                 configMapKeyRef:
                   name: todo-config
                   key: COMPANY_NAME
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: todo-config
-                  key: PORT
+            - name: REDIS_HOST
+              value: "redis-service" # Kasutab Redis Service DNS-i
+            - name: REDIS_PORT
+              value: "6379"
           ports:
             - containerPort: 3000
