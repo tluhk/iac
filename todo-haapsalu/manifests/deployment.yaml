@@ -4,7 +4,7 @@ metadata:
   name: todo-haapsalu
   namespace: haapsalu
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: todo
@@ -13,6 +13,8 @@ spec:
       labels:
         app: todo
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: todo
           image: ghcr.io/tluhk/todo:latest
@@ -29,5 +31,3 @@ spec:
                   key: PORT
           ports:
             - containerPort: 8081
-      imagePullSecrets:
-        - name: ghcr-secret
