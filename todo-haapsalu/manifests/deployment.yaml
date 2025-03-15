@@ -30,4 +30,4 @@ spec:
                   name: todo-config
                   key: PORT
           ports:
-            - containerPort: 8081
+            - containerPort: 3000
