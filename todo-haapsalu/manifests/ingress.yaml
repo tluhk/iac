@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-ingress
+  namespace: haapsalu
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  tls:
+    - hosts:
+        - haapsalu.local
+      secretName: haapsalu-tls
+  rules:
+    - host: haapsalu.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: todo-service
+                port:
+                  number: 80
