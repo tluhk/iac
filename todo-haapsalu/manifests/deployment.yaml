@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
         - name: todo
+          image: ghcr.io/tluhk/todo:latest
           env:
             - name: COMPANY_NAME
               valueFrom:
