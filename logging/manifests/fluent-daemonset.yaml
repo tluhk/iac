@@ -21,9 +21,6 @@ spec:
               mountPath: /var/log
             - name: config
               mountPath: /fluent-bit/etc/
-          env:
-            - name: FLUENT_ELASTICSEARCH_HOST
-              value: "loki"
       volumes:
         - name: varlog
           hostPath:
