@@ -6,26 +6,33 @@ metadata:
 data:
   fluent-bit.conf: |
     [SERVICE]
-        Flush 1
-        Log_Level info
-        Parsers_File parsers.conf
+        Flush        1
+        Log_Level    info
+        Parsers_File parsers.conf  # 🔹 Lisa see rida!
 
     [INPUT]
-        Name tail
-        Path /var/log/containers/*.log
+        Name  tail
+        Path  /var/log/containers/*.log
         Parser docker
-        Tag kube.*
+        Tag    kube.*
 
     [FILTER]
-        Name kubernetes
-        Match kube.*
-        Kube_URL https://kubernetes.default.svc.cluster.local
-        Merge_Log On
-        K8S-Logging.Parser On
+        Name                kubernetes
+        Match               kube.*
+        Kube_URL            https://kubernetes.default.svc.cluster.local
+        Merge_Log           On
+        K8S-Logging.Parser  On
         K8S-Logging.Exclude Off
 
     [OUTPUT]
-        Name loki
-        Match *
-        Url http://loki.logging.svc.cluster.local:3100/loki/api/v1/push
-        Labels namespace=$kubernetes['namespace_name'],pod=$kubernetes['pod_name']
+        Name      loki
+        Match     *
+        Uri       http://loki.logging.svc.cluster.local:3100/loki/api/v1/push  # 🔹 Muuda 'url' -> 'Uri'
+        Labels    namespace=$kubernetes['namespace_name'],pod=$kubernetes['pod_name'],container=$kubernetes['container_name']
+
+  parsers.conf: |
+    [PARSER]
+        Name   docker
+        Format json
+        Time_Key time
+        Time_Format %Y-%m-%dT%H:%M:%S.%L
