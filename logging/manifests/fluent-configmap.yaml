@@ -19,7 +19,7 @@ data:
     [FILTER]
         Name                kubernetes
         Match               kube.*
-        Kube_URL            https://kubernetes.default.svc.cluster.local
+        Kube_URL            https://kubernetes
         Merge_Log           On
         K8S-Logging.Parser  On
         K8S-Logging.Exclude Off
@@ -27,7 +27,7 @@ data:
     [OUTPUT]
         Name      loki
         Match     *
-        Uri       http://loki.logging.svc.cluster.local:3100/loki/api/v1/push  # 🔹 Muuda 'url' -> 'Uri'
+        Uri       http://loki:3100/loki/api/v1/push  # 🔹 Muuda 'url' -> 'Uri'
         Labels    namespace=$kubernetes['namespace_name'],pod=$kubernetes['pod_name'],container=$kubernetes['container_name']
 
   parsers.conf: |

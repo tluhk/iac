@@ -23,7 +23,7 @@ spec:
               mountPath: /fluent-bit/etc/
           env:
             - name: FLUENT_ELASTICSEARCH_HOST
-              value: "loki.logging.svc.cluster.local"
+              value: "loki"
       volumes:
         - name: varlog
           hostPath:
