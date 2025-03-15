@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+  namespace: logging
+  annotations:
+    kubernetes.io/ingress.class: "traefik" # Või "nginx", kui kasutad nginx ingress-controllerit
+spec:
+  tls:
+    - hosts:
+        - grafana.local # Asenda oma domeeniga
+      secretName: grafana-tls # TLS sertifikaat
+  rules:
+    - host: grafana.local # Asenda oma domeeniga
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana
+                port:
+                  number: 3000
