@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: todo
-          image: ghcr.io/tluhk/todo@sha256:224a8952840334fbf206eb972404c20378257d3e6832fd5654abdda70d56a9f8
+          image: ghcr.io/tluhk/todo@sha256:fe810dfb2c807b0ac30f6dddd7ea21c2fd7630e640f1aa12790c134335a4ebdd
           env:
             - name: COMPANY_NAME
               valueFrom:
