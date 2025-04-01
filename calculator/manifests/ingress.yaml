@@ -3,12 +3,8 @@ kind: Ingress
 metadata:
   name: calculator-ingress
   annotations:
-    kubernetes.io/ingress.class: "traefik" # Või "nginx"
+    kubernetes.io/ingressClassName: "traefik" # Või "nginx"
 spec:
-  tls:
-    - hosts:
-        - calculator.local
-      secretName: calculator-tls # Kasutab meie käsitsi loodud TLS-i
   rules:
     - host: calculator.local
       http:
